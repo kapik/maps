@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Interactive Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { width: 100%; height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([1.3521, 103.8198], 12);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FwaWsiLCJhIjoiY2x6ZWxpdnZiMHRvbzJrcXpnOTMycWpicCJ9.EIzdEoqf7f6sPaSyP5CBhg', {
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'pk.eyJ1Ijoia2FwaWsiLCJhIjoiY2x6ZWxpdnZiMHRvbzJrcXpnOTMycWpicCJ9.EIzdEoqf7f6sPaSyP5CBhg'
+        }).addTo(map);
+
+        var locations = {
+            "Gardens by the Bay": [1.2816, 103.8636],
+            "Le Merlion": [1.2868, 103.8545],
+            "Chinatown": [1.2830, 103.8439],
+            "Little India": [1.3064, 103.8490],
+            "Singapore River Cruise": [1.2905, 103.8460],
+            "Singapore Botanic Gardens": [1.3138, 103.8159],
+            "The Southern Ridges": [1.2663, 103.8032],
+            "Level33": [1.2832, 103.8515],
+            "Din Tai Fung": [1.3030, 103.8319],
+            "Singapore City Gallery": [1.2795, 103.8471],
+            "Haji Lane": [1.3011, 103.8599],
+            "Tiong Bahru": [1.2851, 103.8326],
+            "Kampong Bahru Shophouses": [1.2751, 103.8323],
+            "Haw Par Villa": [1.2839, 103.7815],
+        };
+
+        for (var location in locations) {
+            L.marker(locations[location]).addTo(map).bindPopup(location);
+        }
+    </script>
+</body>
+</html>
